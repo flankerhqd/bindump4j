@@ -1,0 +1,40 @@
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+
+group = "Main"
+version = "1.0"
+
+repositories {
+    // Standard Maven
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+// Java version selection
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    testImplementation "junit:junit:4.12"
+    implementation 'junit:junit:4.12'
+    implementation files('libs/android.jar')
+}
+
+// Emulate Maven shade plugin with a fat jar.
+// http://docs.codehaus.org/display/GRADLE/Cookbook#Cookbook-Creatingafatjar
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
