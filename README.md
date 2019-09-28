@@ -1,6 +1,8 @@
+# What's Bindump4j for
+
 Vendor binder services proved to be an interesting part of android devices nature. They usually remains close-source, but sometimes open attack surface for privilege escalation. Namely examples like SVE-2016-7114 (By @laginimaineb), CVE-2018-9143 and CVE-2018-9139 (By @flanker_hqd) and so on, which are all memory corruption vulnerabilities.
 
-# Locating interesting binder service processes
+## Locating interesting binder service processes
 
 Before Android N, all binder services were registered to `servicemanager`, and communicated with each other under `/dev/binder`. After Android N, binder domains are splitted to normal domain under `/dev/binder`, vendor domain under `/dev/vndbinder`, and hardware domain under `/dev/hwbinder`. Normal untrusted_app access is restricted to `/dev/binder`.
 
